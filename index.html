@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proyecto Emmaús V10.0</title>
+<title>Proyecto Emmaús V10.1</title>
 <style>
   :root { --azul: #003366; --amarillo: #FFD700; --blanco: #FFFFFF; --gris: #f4f4f4; }
   body { font-family: 'Segoe UI', sans-serif; background: var(--gris); margin: 0; }
@@ -54,7 +54,12 @@
       main.innerHTML = html;
     } else if (view === 'materiales') {
       main.innerHTML = "<h3>Materiales: Devocionario</h3>" + 
-        [{s:"🙏 Oración de Emaús", c:"Señor Jesús, que sales a nuestro encuentro..."}, {s:"👣 Oración del Joven Peregrino", c:"Padre, me pongo en camino..."}, {s:"🕊️ Invocación al Espíritu Santo", c:"Ven, Espíritu Santo..."}, {s:"📿 Santo Rosario Juvenil", c:"María, Madre del camino..."}]
+        [
+          {s:"🙏 Oración de Emaús", c:"Señor Jesús, que sales a nuestro encuentro en el camino de nuestra vida, camina hoy con nosotros. Que tu Palabra arda en nuestro pecho y que, al partir el pan, nuestros ojos se abran para reconocerte. Quédate con nosotros, porque atardece, y tú eres nuestra única luz y esperanza. Amén."}, 
+          {s:"👣 Oración del Joven Peregrino", c:"Padre, me pongo en camino. Que mis pies sigan tus huellas, mis ojos vean tu rostro en el hermano y mi corazón no se detenga ante el miedo. Haz de mi vida un paso firme hacia la santidad. Que tu Espíritu me guíe en el discernimiento y me dé valentía para el testimonio. Amén."}, 
+          {s:"🕊️ Invocación al Espíritu Santo", c:"Ven, Espíritu Santo, ilumina mi entendimiento y abre mi corazón a la Verdad. Que tu soplo disipe mis sombras y me convierta en testigo de la Resurrección. Sé tú el guía de mis pasos y el fuego que impulse mi misión en el mundo. Amén."}, 
+          {s:"📿 Santo Rosario Juvenil", c:"María, Madre del camino, enséñanos a meditar los misterios de la vida de tu Hijo. Que cada Avemaría sea un paso más hacia el corazón de Jesús. Ayúdanos a vivir con sencillez, a amar con entrega y a ser misioneros de tu paz en medio de nuestros hermanos. Amén."}
+        ]
         .map(o => `<details class='tarjeta'><summary>${o.s}</summary><p>${o.c}</p></details>`).join('');
     }
   }
