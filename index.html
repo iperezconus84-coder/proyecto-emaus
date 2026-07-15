@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proyecto Emmaús V7.2</title>
+<title>Proyecto Emmaús V7.4</title>
 <style>
   :root { --azul: #003366; --amarillo: #FFD700; --blanco: #FFFFFF; --gris: #f4f4f4; }
   body { font-family: 'Segoe UI', sans-serif; background: var(--gris); margin: 0; padding-bottom: 50px; }
@@ -13,6 +13,7 @@
   main { max-width: 650px; margin: 20px auto; background: var(--blanco); padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
   .tarjeta { padding: 15px; border: 1px solid #ddd; margin-bottom: 10px; border-radius: 4px; }
   summary { font-weight: bold; cursor: pointer; color: var(--azul); list-style: none; }
+  .texto-espiritual { font-style: italic; line-height: 1.6; color: #444; }
   .btn-cta { background: var(--amarillo); border: none; padding: 12px 24px; font-weight: bold; cursor: pointer; border-radius: 4px; width: 100%; margin-top: 20px; }
 </style>
 </head>
@@ -29,15 +30,15 @@
 <script>
   const views = {
     home: `<h2>¿Quiénes somos?</h2>
-           <p>Somos jóvenes en camino. Como los discípulos de Emaús, buscamos reconocer al Resucitado en nuestra vida diaria, transformando la rutina en encuentro.</p>`,
-    itinerario: `<h3>Itinerario Orante</h3><p>Acceso a los 10 módulos de formación.</p>
-                 <button class="btn-cta" onclick="alert('Redirigiendo a módulos...')">👣 Ir a los módulos</button>`,
+           <p>Somos jóvenes peregrinos. Como los discípulos de Emaús, nuestra vida se abre al reconocimiento de Jesús Resucitado. No buscamos respuestas teóricas, sino el encuentro que transforma la tristeza en esperanza y el cansancio en misión.</p>`,
+    itinerario: `<h3>Itinerario Orante</h3><p>Camino de 10 pasos hacia la plenitud.</p>
+                 <button class="btn-cta" onclick="alert('Iniciando Módulo 1')">👣 Iniciar Camino</button>`,
     materiales: `<h3>Devocionario Juvenil</h3>
-      <details class="tarjeta"><summary>🙏 Oración de Emaús</summary><p>Señor, quédate con nosotros porque atardece...</p></details>
-      <details class="tarjeta"><summary>👣 Oración del Joven Peregrino</summary><p>Haz de mi vida un camino de constante encuentro...</p></details>
-      <details class="tarjeta"><summary>🕊️ Invocación al Espíritu Santo</summary><p>Ven Espíritu Santo, ilumina mi entendimiento...</p></details>
-      <details class="tarjeta"><summary>📿 Santo Rosario Juvenil</summary><p>Guía de meditación para jóvenes...</p></details>`,
-    blog: `<h3>Blog</h3><p>Próximamente: Testimonios de vida y reflexiones semanales.</p>`
+      <details class="tarjeta"><summary>🙏 Oración de Emaús</summary><p class="texto-espiritual">Señor Jesús, que en el atardecer te haces el encontradizo: camina con nosotros. Que tu Palabra arda en nuestro pecho y tus manos partan el pan de nuestra historia. Quédate con nosotros, porque atardece y tú eres nuestra única luz. Amén.</p></details>
+      <details class="tarjeta"><summary>👣 Oración del Joven Peregrino</summary><p class="texto-espiritual">Padre, me pongo en camino. Que mis pies sigan tus huellas, mis ojos vean tu rostro en el hermano y mi corazón no se detenga ante el miedo. Haz de mi vida un paso firme hacia la santidad. Amén.</p></details>
+      <details class="tarjeta"><summary>🕊️ Invocación al Espíritu Santo</summary><p class="texto-espiritual">Ven, Espíritu Santo, ilumina mi entendimiento y abre mi corazón a la Verdad. Que tu soplo disipe mis sombras y me convierta en testigo de la Resurrección. Amén.</p></details>
+      <details class="tarjeta"><summary>📿 Santo Rosario Juvenil</summary><p class="texto-espiritual">María, Madre del camino, enséñanos a meditar los misterios de la vida de tu Hijo. Que cada Avemaría sea un paso más hacia el corazón de Jesús. (Estructura: Misterio - Palabra - Meditación - Compromiso).</p></details>`,
+    blog: `<h3>Blog</h3><p>Espacio de encuentro y testimonios. Próximamente contenido nuevo.</p>`
   };
 
   function router(view) { document.getElementById('view-port').innerHTML = views[view]; }
