@@ -3,20 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proyecto Emmaús - Versión Final Fase 3</title>
+<title>Proyecto Emmaús V9.0</title>
 <style>
   :root { --azul: #003366; --amarillo: #FFD700; --blanco: #FFFFFF; --gris: #f4f4f4; }
   body { font-family: 'Segoe UI', sans-serif; background: var(--gris); margin: 0; }
   header { background: var(--azul); color: var(--blanco); padding: 20px; text-align: center; }
-  nav { display: flex; justify-content: center; background: #fff; padding: 10px; border-bottom: 2px solid var(--azul); flex-wrap: wrap; }
-  nav button { background: none; border: none; padding: 10px 15px; cursor: pointer; color: var(--azul); font-weight: bold; }
+  nav { display: flex; justify-content: center; background: #fff; padding: 10px; border-bottom: 2px solid var(--azul); }
+  nav button { background: none; border: none; padding: 10px; cursor: pointer; color: var(--azul); font-weight: bold; }
   main { max-width: 650px; margin: 20px auto; background: var(--blanco); padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
   .btn-mod { display: block; width: 100%; padding: 15px; margin: 5px 0; background: var(--azul); color: white; border: none; border-radius: 4px; text-align: left; cursor: pointer; }
-  .btn-cta { background: var(--amarillo); border: none; padding: 12px 24px; font-weight: bold; cursor: pointer; border-radius: 4px; width: 100%; margin-top: 20px; }
-  .paso-lectio { margin: 12px 0; padding: 10px; background: #fdfdfd; border-left: 3px solid var(--azul); }
-  .label-paso { display: block; font-weight: bold; color: var(--azul); }
-  .tarjeta { padding: 15px; border: 1px solid #ddd; margin-bottom: 10px; border-radius: 4px; }
-  summary { font-weight: bold; cursor: pointer; color: var(--azul); list-style: none; padding: 5px; }
+  .tarjeta { margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; padding: 10px; }
+  summary { font-weight: bold; color: var(--azul); cursor: pointer; padding: 5px; }
 </style>
 </head>
 <body>
@@ -31,39 +28,28 @@
 
 <script>
   const data = [
-    {t: "Encuentro", c: "Lc 24, 15", p: {Lectio: "Leen Lc 24,15. El caminante se une a ellos.", Meditatio: "¿Jesús es un extraño o un amigo?", Oratio: "Señor, abre mis ojos.", Contemplatio: "Silencio de acogida."}},
-    {t: "Escucha", c: "Mc 4, 23", p: {Lectio: "Leen Mc 4,23. El que tenga oídos, oiga.", Meditatio: "¿Qué voz sigo en mi vida?", Oratio: "Habla, Señor.", Contemplatio: "Escucha interior."}},
-    {t: "Reconocimiento", c: "Lc 24, 31", p: {Lectio: "Leen Lc 24,31. Le reconocieron.", Meditatio: "¿En qué detalles lo veo?", Oratio: "Te reconozco, Señor.", Contemplatio: "Silencio de paz."}},
-    {t: "Oración", c: "Lc 11, 1", p: {Lectio: "Leen Lc 11,1. Enséñanos.", Meditatio: "¿Es mi oración un diálogo?", Oratio: "Padre nuestro...", Contemplatio: "Silencio filial."}},
-    {t: "Comunidad", c: "Hch 2, 42", p: {Lectio: "Leen Hch 2,42. Perseveraban.", Meditatio: "¿Amo a mi comunidad?", Oratio: "Unidos en un solo Espíritu.", Contemplatio: "Comunión."}},
-    {t: "Discernimiento", c: "1Jn 4, 1", p: {Lectio: "Leen 1Jn 4,1. Examinad los espíritus.", Meditatio: "¿Qué me da paz?", Oratio: "Dame tu luz, Señor.", Contemplatio: "Silencio atento."}},
-    {t: "Conversión", c: "Mc 1, 15", p: {Lectio: "Leen Mc 1,15. Convertíos.", Meditatio: "¿Qué debo cambiar?", Oratio: "Crea en mí un corazón nuevo.", Contemplatio: "Silencio de humillación."}},
-    {t: "Seguimiento", c: "Lc 9, 23", p: {Lectio: "Leen Lc 9,23. Niéguese a sí mismo.", Meditatio: "¿Qué peso me impide seguirlo?", Oratio: "Señor, te sigo.", Contemplatio: "Silencio de entrega."}},
-    {t: "Testimonio", c: "Mt 5, 14", p: {Lectio: "Leen Mt 5,14. Luz del mundo.", Meditatio: "¿Soy luz para los otros?", Oratio: "Que mi vida sea luz.", Contemplatio: "Silencio radiante."}},
-    {t: "Misión", c: "Mt 28, 19", p: {Lectio: "Leen Mt 28,19. Id y anunciad.", Meditatio: "¿A quién anuncio al Señor?", Oratio: "Envíame, Señor.", Contemplatio: "Silencio misionero."}}
+    {t: "Encuentro", c: "Lc 24, 15", p: {Inicio: "Señor, que caminas a mi lado, abre mi corazón.", Lectio: "Leen Lc 24,15. El caminante se une a ellos.", Dinámica: "Escribe 3 momentos de tu día donde sentiste a Dios.", Compromiso: "Saluda a alguien con quien seas indiferente.", Cierre: "Quédate con nosotros, Señor."}},
+    {t: "Escucha", c: "Mc 4, 23", p: {Inicio: "Espíritu Santo, limpia mis oídos.", Lectio: "Leen Mc 4,23. El que tenga oídos, oiga.", Dinámica: "Identifica un ruido que opaca la voz de Dios.", Compromiso: "Haz 5 min de silencio absoluto.", Cierre: "Habla, Señor."}},
+    {t: "Reconocimiento", c: "Lc 24, 31", p: {Inicio: "Ábreme los ojos, Señor.", Lectio: "Leen Lc 24,31. Le reconocieron.", Dinámica: "Lista 3 detalles donde viste a Jesús.", Compromiso: "Agradece a alguien por su bondad.", Cierre: "Te reconozco, Señor."}},
+    {t: "Oración", c: "Lc 11, 1", p: {Inicio: "Enséñame a hablarte, Padre.", Lectio: "Leen Lc 11,1. Enséñanos a orar.", Dinámica: "Escribe una carta sobre tu mayor miedo.", Compromiso: "Reza un Padre Nuestro pausado.", Cierre: "Danos tu Espíritu."}},
+    {t: "Comunidad", c: "Hch 2, 42", p: {Inicio: "Señor, hazme hermano.", Lectio: "Leen Hch 2,42. Perseveraban juntos.", Dinámica: "Identifica un grupo donde te sientas acogido.", Compromiso: "Envía un mensaje de aliento.", Cierre: "Unidos en tu amor."}},
+    {t: "Discernimiento", c: "1Jn 4, 1", p: {Inicio: "Dame luz, Espíritu Santo.", Lectio: "Leen 1Jn 4,1. Examinad los espíritus.", Dinámica: "Elige entre bien y más bien.", Compromiso: "Pide luz antes de decidir hoy.", Cierre: "Dame tu paz."}},
+    {t: "Conversión", c: "Mc 1, 15", p: {Inicio: "Señor, cámbiame.", Lectio: "Leen Mc 1,15. Convertíos.", Dinámica: "Identifica una actitud que resta alegría.", Compromiso: "Realiza un acto de servicio oculto.", Cierre: "Crea en mí un corazón nuevo."}},
+    {t: "Seguimiento", c: "Lc 9, 23", p: {Inicio: "Señor, quiero seguirte.", Lectio: "Leen Lc 9,23. Toma tu cruz.", Dinámica: "Escribe qué te cuesta dejar atrás.", Compromiso: "Renuncia a un capricho hoy.", Cierre: "Señor, te sigo."}},
+    {t: "Testimonio", c: "Mt 5, 14", p: {Inicio: "Hazme luz, Señor.", Lectio: "Leen Mt 5,14. Luz del mundo.", Dinámica: "Lista 2 talentos que tienes para servir.", Compromiso: "Comparte algo positivo en redes.", Cierre: "Que mi vida brille."}},
+    {t: "Misión", c: "Mt 28, 19", p: {Inicio: "Envíame, Señor.", Lectio: "Leen Mt 28,19. Id y anunciad.", Dinámica: "Elige una persona que necesita esperanza.", Compromiso: "Invita a alguien al Proyecto Emmaús.", Cierre: "Envíame a tu campo."}}
   ];
 
   function router(view, i = null) {
     const main = document.getElementById('view-port');
-    if (view === 'home') {
-      main.innerHTML = `<h2>Proyecto Emmaús: Tu camino, tu encuentro.</h2>
-        <p>No caminas solo. En la rutina de tus días, el Resucitado sale a tu encuentro. Este espacio es tu hoja de ruta para reconocer Su presencia, escuchar Su Palabra y transformar tu realidad en misión.</p>
-        <button class="btn-cta" onclick="router('itinerario')">👣 Iniciar mi Itinerario</button>`;
-    } else if (view === 'itinerario') {
-      main.innerHTML = "<h3>Itinerario Orante</h3>" + data.map((m, index) => 
-        `<button class="btn-mod" onclick="router('detalle', ${index})">Módulo ${index+1}: ${m.t}</button>`).join('');
-    } else if (view === 'detalle') {
+    if (view === 'home') main.innerHTML = "<h2>Proyecto Emmaús</h2><p>Tu camino, tu encuentro.</p><button class='btn-cta' onclick='router(\"itinerario\")'>👣 Iniciar</button>";
+    else if (view === 'itinerario') main.innerHTML = "<h3>Itinerario</h3>" + data.map((m, index) => `<button class='btn-mod' onclick='router(\"detalle\", ${index})'>Módulo ${index+1}: ${m.t}</button>`).join('');
+    else if (view === 'detalle') {
       const m = data[i];
       let html = `<h3>${m.t}</h3><p><strong>Cita:</strong> ${m.c}</p>`;
-      for (let paso in m.p) html += `<div class="paso-lectio"><strong class="label-paso">${paso}:</strong> ${m.p[paso]}</div>`;
-      html += `<br><button onclick="router('itinerario')">⬅ Volver al Itinerario</button>`;
+      for (let p in m.p) html += `<details class='tarjeta'><summary>${p}</summary><p>${m.p[p]}</p></details>`;
+      html += `<button onclick='router(\"itinerario\")'>⬅ Volver</button>`;
       main.innerHTML = html;
-    } else if (view === 'materiales') {
-      main.innerHTML = `<h3>Materiales: Devocionario</h3>
-        <details class="tarjeta"><summary>🙏 Oración de Emaús</summary><p>Señor Jesús, que sales a nuestro encuentro en el camino de nuestra vida, camina hoy con nosotros. Que tu Palabra arda en nuestro pecho y que, al partir el pan, nuestros ojos se abran para reconocerte. Quédate con nosotros, porque atardece, y tú eres nuestra única luz y esperanza. Amén.</p></details>
-        <details class="tarjeta"><summary>👣 Oración del Joven Peregrino</summary><p>Padre, me pongo en camino. Que mis pies sigan tus huellas, mis ojos vean tu rostro en el hermano y mi corazón no se detenga ante el miedo. Haz de mi vida un paso firme hacia la santidad. Que tu Espíritu me guíe en el discernimiento y me dé valentía para el testimonio. Amén.</p></details>
-        <details class="tarjeta"><summary>🕊️ Invocación al Espíritu Santo</summary><p>Ven, Espíritu Santo, ilumina mi entendimiento y abre mi corazón a la Verdad. Que tu soplo disipe mis sombras y me convierta en testigo de la Resurrección. Sé tú el guía de mis pasos y el fuego que impulse mi misión en el mundo. Amén.</p></details>
-        <details class="tarjeta"><summary>📿 Santo Rosario Juvenil</summary><p>María, Madre del camino, enséñanos a meditar los misterios de la vida de tu Hijo. Que cada Avemaría sea un paso más hacia el corazón de Jesús. Ayúdanos a vivir con sencillez, a amar con entrega y a ser misioneros de tu paz en medio de nuestros hermanos. Amén.</p></details>`;
     }
   }
   router('home');
