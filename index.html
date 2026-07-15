@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proyecto Emaus V12.3</title>
+<title>Proyecto Emaus</title>
 <link rel="manifest" href="manifest.json">
 <style>
   :root { --azul: #003366; --amarillo: #FFD700; --blanco: #FFFFFF; --gris: #f4f4f4; }
@@ -12,7 +12,7 @@
   header { background: var(--blanco); padding: 15px; text-align: center; border-bottom: 2px solid var(--azul); }
   .logo { max-width: 180px; height: auto; display: block; margin: 0 auto; }
   
-  nav { display: flex; justify-content: center; background: var(--blanco); padding: 10px; border-bottom: 1px solid #ddd; }
+  nav { display: flex; justify-content: center; background: var(--blanco); padding: 10px; border-bottom: 1px solid #ddd; flex-wrap: wrap; }
   nav button { background: none; border: none; padding: 10px 15px; cursor: pointer; color: var(--azul); font-weight: bold; }
   
   main { max-width: 650px; margin: 20px auto; background: var(--blanco); padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
@@ -35,6 +35,7 @@
     <button onclick="router('itinerario')">Itinerario</button>
     <button onclick="router('materiales')">Materiales</button>
     <button onclick="window.open('https://espacioemaus.blogspot.com/', '_blank')">Blog</button>
+    <button onclick="window.open('https://bit.ly/proyectoemaus', '_blank')" style="color: #25D366; font-weight: bold;">WhatsApp</button>
   </nav>
   <main id="view-port"></main>
 
@@ -64,12 +65,10 @@
       main.innerHTML = html;
     } else if (view === 'materiales') {
       main.innerHTML = "<h3>Materiales: Devocionario</h3>" + 
-        [
-          {s:"🙏 Oración de Emaus", c:"Señor Jesús, que sales a nuestro encuentro en el camino de nuestra vida, camina hoy con nosotros... Amén."}, 
-          {s:"👣 Oración del Joven Peregrino", c:"Padre, me pongo en camino... Amén."}, 
-          {s:"🕊️ Invocación al Espíritu Santo", c:"Ven, Espíritu Santo... Amén."}, 
-          {s:"📿 Santo Rosario Juvenil", c:"María, Madre del camino... Amén."}
-        ]
+        [{s:"🙏 Oración de Emaus", c:"Señor Jesús, que sales a nuestro encuentro en el camino de nuestra vida, camina hoy con nosotros... Amén."}, 
+         {s:"👣 Oración del Joven Peregrino", c:"Padre, me pongo en camino... Amén."}, 
+         {s:"🕊️ Invocación al Espíritu Santo", c:"Ven, Espíritu Santo... Amén."}, 
+         {s:"📿 Santo Rosario Juvenil", c:"María, Madre del camino... Amén."}]
         .map(o => `<details class='tarjeta'><summary>${o.s}</summary><p>${o.c}</p></details>`).join('');
     }
   }
