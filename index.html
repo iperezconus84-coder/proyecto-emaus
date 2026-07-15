@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proyecto Emmaús V7.9</title>
+<title>Proyecto Emmaús V8.0</title>
 <style>
   :root { --azul: #003366; --amarillo: #FFD700; --blanco: #FFFFFF; --gris: #f4f4f4; }
   body { font-family: 'Segoe UI', sans-serif; background: var(--gris); margin: 0; }
@@ -28,12 +28,19 @@
 <script>
   const data = [
     {t: "Encuentro", c: "Lc 24, 15", p: {Lectio: "Lee Lc 24,15. ¿Qué palabra te detiene?", Meditatio: "Jesús camina contigo. ¿Qué le dices de tu día?", Oratio: "Dile: 'Señor, quédate conmigo'.", Contemplatio: "Silencio de 2 min."}},
-    {t: "Escucha", c: "Mc 4, 23", p: {Lectio: "Lee Mc 4,23. Identifica la voz del Señor.", Meditatio: "¿Qué ruido te impide oírle?", Oratio: "Pide: 'Quita el ruido, quiero oírte'.", Contemplatio: "Silencio interior."}}
+    {t: "Escucha", c: "Mc 4, 23", p: {Lectio: "Lee Mc 4,23. Identifica la voz del Señor.", Meditatio: "¿Qué ruido te impide oírle?", Oratio: "Pide: 'Quita el ruido, quiero oírte'.", Contemplatio: "Silencio interior."}},
+    {t: "Reconocimiento", c: "Lc 24, 31", p: {Lectio: "Lee Lc 24,31. ¿Dónde lo ves hoy?", Meditatio: "Él se hace presente.", Oratio: "Adora su presencia.", Contemplatio: "Silencio de mirada."}},
+    {t: "Oración", c: "Lc 11, 1", p: {Lectio: "Lee Lc 11,1. Enséñanos a orar.", Meditatio: "¿Cómo es mi relación con Él?", Oratio: "Habla como un amigo.", Contemplatio: "Silencio y escucha."}},
+    {t: "Comunidad", c: "Hch 2, 42", p: {Lectio: "Lee Hch 2,42. La vida fraterna.", Meditatio: "¿Con quién comparto mi fe?", Oratio: "Pide por tus hermanos.", Contemplatio: "Comunión espiritual."}},
+    {t: "Discernimiento", c: "1Jn 4, 1", p: {Lectio: "Lee 1Jn 4,1. Examina los espíritus.", Meditatio: "¿Qué me mueve a bien?", Oratio: "Pide luz al Espíritu.", Contemplatio: "Silencio y paz."}},
+    {t: "Conversión", c: "Mc 1, 15", p: {Lectio: "Lee Mc 1,15. Cree en la Buena Nueva.", Meditatio: "¿Qué debo cambiar hoy?", Oratio: "Pide un corazón nuevo.", Contemplatio: "Silencio de entrega."}},
+    {t: "Seguimiento", c: "Lc 9, 23", p: {Lectio: "Lee Lc 9,23. Toma tu cruz.", Meditatio: "¿Qué me cuesta seguirlo?", Oratio: "Pide fuerza y valentía.", Contemplatio: "Silencio de confianza."}},
+    {t: "Testimonio", c: "Mt 5, 14", p: {Lectio: "Lee Mt 5,14. Luz del mundo.", Meditatio: "¿Ilumino mi entorno?", Oratio: "Pide ser luz.", Contemplatio: "Silencio y luz."}},
+    {t: "Misión", c: "Mt 28, 19", p: {Lectio: "Lee Mt 28,19. Vayan y anuncien.", Meditatio: "¿A quién debo anunciar?", Oratio: "Pide valentía apostólica.", Contemplatio: "Silencio y envío."}}
   ];
 
   function router(view, i = null) {
     const main = document.getElementById('view-port');
-    
     if (view === 'home') main.innerHTML = "<h2>Inicio</h2><p>Bienvenido al camino de Emaús.</p>";
     else if (view === 'itinerario') {
       main.innerHTML = "<h3>Itinerario Orante</h3>" + data.map((m, index) => 
