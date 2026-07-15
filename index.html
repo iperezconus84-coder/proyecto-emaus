@@ -3,79 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#003366">
-<title>Proyecto Emmaús V5.3</title>
-<link rel="manifest" href="./manifest.json">
+<title>Proyecto Emmaús V5.5</title>
 <style>
-  :root { --azul: #003366; --amarillo: #FFD700; --blanco: #FFFFFF; --gris: #f4f4f4; --noche: #2c2c2c; --texto-noche: #e0e0e0; }
-  body { font-family: 'Segoe UI', sans-serif; background: var(--gris); margin: 0; padding: 20px; color: #333; transition: background 0.3s; }
-  body.noche { background: var(--noche); color: var(--texto-noche); }
+  :root { --azul: #003366; --amarillo: #FFD700; --blanco: #FFFFFF; --gris: #f4f4f4; }
+  body { font-family: 'Segoe UI', sans-serif; background: var(--gris); margin: 0; padding: 20px; color: #333; }
   main { max-width: 650px; margin: auto; background: var(--blanco); padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-  body.noche main { background: #3d3d3d; }
-  header { background: var(--azul); color: var(--blanco); padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
-  .progress-container { width: 100%; background: #ddd; height: 10px; border-radius: 5px; margin: 20px 0; }
-  .progress-bar { height: 10px; background: var(--amarillo); border-radius: 5px; width: 0%; transition: width 0.5s; }
-  .modulo { display: none; border-top: 2px solid var(--azul); padding-top: 20px; }
-  .btn { background: var(--amarillo); border: none; padding: 12px 24px; cursor: pointer; font-weight: bold; border-radius: 4px; color: #333; margin-top: 10px; width: 100%; }
-  .btn-secundario { background: transparent; border: 2px solid var(--azul); color: var(--azul); }
-  body.noche .btn-secundario { border-color: var(--amarillo); color: var(--amarillo); }
-  .oracion { border-left: 4px solid var(--amarillo); padding: 15px; background: #fffdf0; margin: 15px 0; font-style: italic; color: #333; }
-  .desafio { border: 2px solid var(--amarillo); padding: 15px; background: #ffffed; margin: 15px 0; border-radius: 6px; color: #333; }
-  textarea { width: 100%; height: 100px; margin-top: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-family: inherit; }
-  details { margin: 15px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; border: 1px solid #eee; color: #333; }
-  summary { cursor: pointer; font-weight: bold; color: var(--azul); }
-  .ilustracion { width: 100%; max-width: 300px; display: block; margin: 10px auto; border-radius: 8px; }
-  .mode-btn { position: fixed; top: 20px; right: 20px; padding: 10px; cursor: pointer; background: var(--blanco); border: 1px solid #ccc; border-radius: 50%; z-index: 10; }
-  .estado-guardado { font-size: 0.85em; color: #777; margin-top: 6px; }
+  
+  header { background: var(--azul); color: var(--blanco); padding: 20px; border-radius: 8px 8px 0 0; text-align: center; }
+  #menu-modulos { width: 100%; max-width: 300px; padding: 10px; margin-top: 10px; border-radius: 4px; border: none; }
+  
+  .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 10px 0; border-bottom: 1px solid #eee; }
+  .btn { background: var(--amarillo); border: none; padding: 12px 20px; cursor: pointer; font-weight: bold; border-radius: 4px; width: 100%; margin-top: 15px; }
+  .btn-nav { background: #eee; border: 1px solid #ccc; cursor: pointer; padding: 8px 15px; border-radius: 4px; }
+  .desafio { border: 2px solid var(--amarillo); padding: 15px; background: #ffffed; margin: 15px 0; border-radius: 6px; }
 </style>
 </head>
 <body>
-  <button class="mode-btn" onclick="toggleMode()">🌙</button>
-  <header><h1>Proyecto Emmaús</h1></header>
+  <header>
+    <h1>Proyecto Emmaús</h1>
+    <select id="menu-modulos" onchange="irAModulo()">
+      <option value="">Selecciona un módulo...</option>
+    </select>
+  </header>
   <main id="app">
-    <div id="portada" style="text-align: center;">
-      <h2>Bienvenido al camino</h2>
-      <button class="btn" onclick="iniciar()">👣 Iniciar el Camino</button>
-    </div>
     <div id="contenedor-modulos"></div>
   </main>
 
 <script>
   const contenido = [
-    {t: "Encuentro", c: "Lc 24, 15", l: "Lectio: Lee Lc 24,15. ¿Quién te busca hoy?", o: "Jesús, que tu presencia transforme mi desconcierto en esperanza.", d: "Escribe el nombre de alguien que hoy necesita ser buscado por ti."},
-    {t: "Escucha", c: "Mc 4, 23", l: "Lectio: Lee Mc 4, 23. ¿Qué voz escuchas?", o: "Señor, sáname de mi sordera interior para oír tu voz.", d: "Identifica un ruido (digital/mental) y apágalo por 15 minutos."},
-    {t: "Reconocimiento", c: "Lc 24, 31", l: "Lectio: Lee Lc 24, 31. ¿Dónde lo veo?", o: "Que mi corazón te reconozca en lo sencillo de cada día.", d: "Comparte tu pan (tiempo/dinero/alimento) con alguien en necesidad."},
-    {t: "Oración", c: "Lc 11, 1", l: "Lectio: Lee Lc 11, 1. ¿Cómo hablo con Él?", o: "Padre, haz que mi oración no sea rutina, sino encuentro.", d: "Ora hoy por una persona que te sea difícil perdonar."},
-    {t: "Comunidad", c: "Hch 2, 42", l: "Lectio: Lee Hch 2, 42. ¿Quién es mi hermano?", o: "Señor, que en mis hermanos vea tu rostro reflejado.", d: "Llama a un hermano de comunidad y pregúntale: ¿Cómo puedo servirte hoy?"},
-    {t: "Discernimiento", c: "Rom 12, 2", l: "Lectio: Lee Rom 12, 2. ¿Cuál es Su voluntad?", o: "Que tu Espíritu guíe mi libertad hacia tu voluntad.", d: "Toma una decisión pequeña pero difícil hoy, buscando solo agradar a Dios."},
-    {t: "Conversión", c: "Mc 1, 15", l: "Lectio: Lee Mc 1, 15. ¿Hacia dónde voy?", o: "Señor, que mi vida gire totalmente hacia Ti.", d: "Identifica un hábito que te aleja de Dios y cámbialo por uno de servicio."},
-    {t: "Seguimiento", c: "Lc 9, 23", l: "Lectio: Lee Lc 9, 23. ¿Qué es cargar la cruz?", o: "Dame la gracia de seguirte, Jesús, incluso bajo la cruz.", d: "Haz un pequeño sacrificio voluntario (ayuno/silencio) por amor a Jesús."},
-    {t: "Testimonio", c: "Mt 5, 14", l: "Lectio: Lee Mt 5, 14. ¿Soy luz?", o: "Que mi vida sea la luz que tu mundo necesita hoy.", d: "Envía un mensaje de esperanza a alguien que no conoce a Dios."},
-    {t: "Misión", c: "Mt 28, 19", l: "Lectio: Lee Mt 28, 19. ¿Adónde voy?", o: "Envíame, Señor, a llevar tu alegría a los que esperan.", d: "Propón una acción concreta de ayuda en tu entorno parroquial o familiar."}
+    {t: "Encuentro", d: "Escribe el nombre de alguien que hoy necesita ser buscado por ti."},
+    {t: "Escucha", d: "Identifica un ruido y apágalo por 15 minutos."},
+    {t: "Reconocimiento", d: "Comparte tu pan con alguien en necesidad."},
+    {t: "Oración", d: "Ora por una persona que te sea difícil perdonar."},
+    {t: "Comunidad", d: "Llama a un hermano y pregúntale: ¿Cómo puedo servirte hoy?"},
+    {t: "Discernimiento", d: "Toma una decisión difícil buscando solo agradar a Dios."},
+    {t: "Conversión", d: "Cambia un hábito que te aleja de Dios por uno de servicio."},
+    {t: "Seguimiento", d: "Haz un pequeño sacrificio por amor a Jesús."},
+    {t: "Testimonio", d: "Envía un mensaje de esperanza a alguien que no conoce a Dios."},
+    {t: "Misión", d: "Propón una acción concreta de ayuda en tu entorno."}
   ];
+
+  const select = document.getElementById('menu-modulos');
+  contenido.forEach((m, i) => {
+    let opt = document.createElement('option');
+    opt.value = i + 1;
+    opt.text = `Módulo ${i + 1}: ${m.t}`;
+    select.appendChild(opt);
+  });
+
+  function irAModulo() {
+    const val = select.value;
+    if(val) mostrarModulo(parseInt(val));
+  }
 
   function mostrarModulo(id) {
     const m = contenido[id - 1];
-    const p = (id / 10) * 100;
     document.getElementById('contenedor-modulos').innerHTML = `
-      <div class="modulo" style="display:block;">
-        <div class="progress-container"><div class="progress-bar" style="width:${p}%"></div></div>
-        <h3>Módulo ${id}: ${m.t}</h3>
-        <p><strong>Cita:</strong> ${m.c}</p>
-        <details><summary>📖 Lectio Divina</summary><p>${m.l}</p></details>
-        <div class="oracion"><strong>🙏 Oración:</strong> ${m.o}</div>
-        <div class="desafio"><strong>🎯 Desafío Real:</strong> ${m.d}</div>
-        <textarea id="nota_${id}" placeholder="✍️ Bitácora de acción..."></textarea>
-        <button class="btn" onclick="guardar(${id})">💾 Guardar Desafío</button>
-        <button class="btn btn-secundario" onclick="siguiente(${id})">👣 ${id < 10 ? 'Siguiente' : 'Finalizar'}</button>
-      </div>`;
-    document.getElementById('nota_'+id).value = localStorage.getItem('nota_'+id) || '';
+      <div class="nav-bar">
+        <button class="btn-nav" onclick="mostrarModulo(${id - 1})" ${id==1?'disabled':''}>⬅️</button>
+        <span>Módulo ${id} de 10</span>
+        <button class="btn-nav" onclick="mostrarModulo(${id + 1})" ${id==10?'disabled':''}>➡️</button>
+      </div>
+      <h3>${m.t}</h3>
+      <div class="desafio"><strong>🎯 Desafío Real:</strong> ${m.d}</div>
+      <button class="btn" onclick="alert('Desafío registrado en bitácora')">💾 Guardar avance</button>
+    `;
+    select.value = id;
   }
-  
-  function iniciar() { document.getElementById('portada').style.display = 'none'; mostrarModulo(1); }
-  function guardar(id) { localStorage.setItem('nota_'+id, document.getElementById('nota_'+id).value); alert('Desafío registrado.'); }
-  function siguiente(id) { guardar(id); if(id < 10) mostrarModulo(id+1); else alert('¡Itinerario completado!'); }
-  function toggleMode() { document.body.classList.toggle('noche'); }
 </script>
 </body>
 </html>
