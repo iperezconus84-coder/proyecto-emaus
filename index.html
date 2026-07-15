@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proyecto Emmaús V8.6 - Final Fase 3</title>
+<title>Proyecto Emmaús - Versión Final Fase 3</title>
 <style>
   :root { --azul: #003366; --amarillo: #FFD700; --blanco: #FFFFFF; --gris: #f4f4f4; }
   body { font-family: 'Segoe UI', sans-serif; background: var(--gris); margin: 0; }
@@ -16,7 +16,7 @@
   .paso-lectio { margin: 12px 0; padding: 10px; background: #fdfdfd; border-left: 3px solid var(--azul); }
   .label-paso { display: block; font-weight: bold; color: var(--azul); }
   .tarjeta { padding: 15px; border: 1px solid #ddd; margin-bottom: 10px; border-radius: 4px; }
-  summary { font-weight: bold; cursor: pointer; color: var(--azul); list-style: none; }
+  summary { font-weight: bold; cursor: pointer; color: var(--azul); list-style: none; padding: 5px; }
 </style>
 </head>
 <body>
@@ -59,11 +59,11 @@
       html += `<br><button onclick="router('itinerario')">⬅ Volver al Itinerario</button>`;
       main.innerHTML = html;
     } else if (view === 'materiales') {
-      main.innerHTML = `<h3>Materiales</h3>
-        <details class="tarjeta"><summary>🙏 Oración de Emaús</summary><p>Señor Jesús, que sales a nuestro encuentro...</p></details>
-        <details class="tarjeta"><summary>👣 Oración del Joven Peregrino</summary><p>Padre, me pongo en camino...</p></details>
-        <details class="tarjeta"><summary>🕊️ Invocación al Espíritu Santo</summary><p>Ven, Espíritu Santo...</p></details>
-        <details class="tarjeta"><summary>📿 Santo Rosario Juvenil</summary><p>María, Madre del camino...</p></details>`;
+      main.innerHTML = `<h3>Materiales: Devocionario</h3>
+        <details class="tarjeta"><summary>🙏 Oración de Emaús</summary><p>Señor Jesús, que sales a nuestro encuentro en el camino de nuestra vida, camina hoy con nosotros. Que tu Palabra arda en nuestro pecho y que, al partir el pan, nuestros ojos se abran para reconocerte. Quédate con nosotros, porque atardece, y tú eres nuestra única luz y esperanza. Amén.</p></details>
+        <details class="tarjeta"><summary>👣 Oración del Joven Peregrino</summary><p>Padre, me pongo en camino. Que mis pies sigan tus huellas, mis ojos vean tu rostro en el hermano y mi corazón no se detenga ante el miedo. Haz de mi vida un paso firme hacia la santidad. Que tu Espíritu me guíe en el discernimiento y me dé valentía para el testimonio. Amén.</p></details>
+        <details class="tarjeta"><summary>🕊️ Invocación al Espíritu Santo</summary><p>Ven, Espíritu Santo, ilumina mi entendimiento y abre mi corazón a la Verdad. Que tu soplo disipe mis sombras y me convierta en testigo de la Resurrección. Sé tú el guía de mis pasos y el fuego que impulse mi misión en el mundo. Amén.</p></details>
+        <details class="tarjeta"><summary>📿 Santo Rosario Juvenil</summary><p>María, Madre del camino, enséñanos a meditar los misterios de la vida de tu Hijo. Que cada Avemaría sea un paso más hacia el corazón de Jesús. Ayúdanos a vivir con sencillez, a amar con entrega y a ser misioneros de tu paz en medio de nuestros hermanos. Amén.</p></details>`;
     }
   }
   router('home');
