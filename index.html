@@ -3,76 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proyecto Emmaús V5.6</title>
+<title>Proyecto Emmaús V5.8</title>
 <style>
   :root { --azul: #003366; --amarillo: #FFD700; --blanco: #FFFFFF; --gris: #f4f4f4; }
   body { font-family: 'Segoe UI', sans-serif; background: var(--gris); margin: 0; padding: 20px; color: #333; }
   main { max-width: 650px; margin: auto; background: var(--blanco); padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
   header { background: var(--azul); color: var(--blanco); padding: 20px; border-radius: 8px 8px 0 0; text-align: center; }
-  #menu-modulos { width: 100%; max-width: 300px; padding: 10px; margin-top: 10px; border-radius: 4px; border: none; }
-  .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 10px 0; border-bottom: 1px solid #eee; }
-  .btn { background: var(--amarillo); border: none; padding: 12px 20px; cursor: pointer; font-weight: bold; border-radius: 4px; width: 100%; margin-top: 15px; }
-  .btn-nav { background: #eee; border: 1px solid #ccc; cursor: pointer; padding: 8px 15px; border-radius: 4px; }
+  .lectio-box { background: #f9f9f9; padding: 15px; border-radius: 6px; border-left: 4px solid var(--azul); margin: 15px 0; font-size: 0.95em; line-height: 1.6; }
   .desafio { border: 2px solid var(--amarillo); padding: 15px; background: #ffffed; margin: 15px 0; border-radius: 6px; }
-  details { margin: 15px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; border: 1px solid #eee; }
-  summary { cursor: pointer; font-weight: bold; color: var(--azul); }
+  .btn { background: var(--amarillo); border: none; padding: 12px; width: 100%; cursor: pointer; font-weight: bold; border-radius: 4px; margin-top: 15px; }
+  .nav-bar { display: flex; justify-content: space-between; margin-bottom: 20px; }
 </style>
 </head>
 <body>
-  <header>
-    <h1>Proyecto Emmaús</h1>
-    <select id="menu-modulos" onchange="irAModulo()">
-      <option value="">Selecciona un módulo...</option>
-    </select>
-  </header>
-  <main id="app">
-    <div id="contenedor-modulos"></div>
+  <header><h1>Proyecto Emmaús</h1></header>
+  <main>
+    <select id="menu" onchange="mostrarModulo(this.value)" style="width:100%; padding:10px; margin-bottom:20px;"></select>
+    <div id="app"></div>
   </main>
 
 <script>
-  const contenido = [
-    {t: "Encuentro", c: "Lc 24, 15", l: "Jesús mismo se acercó y caminaba con ellos.", o: "Jesús, que tu presencia transforme mi desconcierto en esperanza.", d: "Escribe el nombre de alguien que hoy necesita ser buscado por ti."},
-    {t: "Escucha", c: "Mc 4, 23", l: "El que tenga oídos para oír, que oiga.", o: "Señor, sáname de mi sordera interior.", d: "Identifica un ruido y apágalo por 15 minutos."},
-    {t: "Reconocimiento", c: "Lc 24, 31", l: "Entonces se les abrieron los ojos y lo reconocieron.", o: "Que mi corazón te reconozca en lo sencillo.", d: "Comparte tu pan con alguien en necesidad."},
-    {t: "Oración", c: "Lc 11, 1", l: "Señor, enséñanos a orar.", o: "Padre, haz que mi oración sea un encuentro real.", d: "Ora por alguien que te sea difícil perdonar."},
-    {t: "Comunidad", c: "Hch 2, 42", l: "Acudían asiduamente a la enseñanza y comunión.", o: "Señor, que vea tu rostro en mis hermanos.", d: "Llama a un hermano y pregúntale: ¿Cómo puedo servirte?"},
-    {t: "Discernimiento", c: "Rom 12, 2", l: "No se amolden a este mundo.", o: "Que tu Espíritu guíe mi libertad.", d: "Toma una decisión difícil buscando solo agradar a Dios."},
-    {t: "Conversión", c: "Mc 1, 15", l: "Conviértanse y crean en la Buena Noticia.", o: "Señor, que mi vida gire hacia Ti.", d: "Cambia un hábito que te aleja de Dios por uno de servicio."},
-    {t: "Seguimiento", c: "Lc 9, 23", l: "Tome su cruz cada día y sígame.", o: "Dame la gracia de seguirte, Jesús.", d: "Haz un pequeño sacrificio por amor a Jesús."},
-    {t: "Testimonio", c: "Mt 5, 14", l: "Ustedes son la luz del mundo.", o: "Que mi vida sea la luz que tu mundo necesita.", d: "Envía un mensaje de esperanza a alguien que no conoce a Dios."},
-    {t: "Misión", c: "Mt 28, 19", l: "Vayan y hagan discípulos.", o: "Envíame, Señor, a llevar tu alegría.", d: "Propón una acción concreta de ayuda en tu entorno."}
+  const data = [
+    {t: "Encuentro", c: "Lc 24, 15", l: "Lectio: Jesús se acerca. Meditatio: ¿Qué peso cargo? Oratio: Acércate a mi realidad. Contemplatio: Quédate con nosotros.", d: "Escribe el nombre de alguien que hoy necesita ser buscado por ti."},
+    {t: "Escucha", c: "Mc 4, 23", l: "Lectio: Escuchar es acoger. Meditatio: ¿La Palabra juzga mi vida? Oratio: Espíritu Santo, limpia mis oídos. Contemplatio: Silencio ante el Maestro.", d: "Identifica un ruido digital y apágalo por 15 minutos."},
+    {t: "Reconocimiento", c: "Lc 24, 31", l: "Lectio: Lo reconocieron al partir el pan. Meditatio: ¿Dónde encuentro a Jesús hoy? Oratio: Abre mis ojos. Contemplatio: Él está presente.", d: "Comparte tu pan con alguien en necesidad."},
+    {t: "Oración", c: "Lc 11, 1", l: "Lectio: Señor, enséñanos a orar. Meditatio: ¿Mi oración es rutina o encuentro? Oratio: Enséñame a hablarte. Contemplatio: Descanso en Dios.", d: "Ora por alguien que te sea difícil perdonar."},
+    {t: "Comunidad", c: "Hch 2, 42", l: "Lectio: Vida en común. Meditatio: ¿Quién es mi hermano? Oratio: Señor, une nuestra Iglesia. Contemplatio: Vida compartida.", d: "Llama a un hermano y pregúntale: ¿Cómo puedo servirte?"},
+    {t: "Discernimiento", c: "Rom 12, 2", l: "Lectio: No se amolden al mundo. Meditatio: ¿Cuál es Su voluntad? Oratio: Ilumina mis decisiones. Contemplatio: En Tu paz.", d: "Toma una decisión difícil buscando solo agradar a Dios."},
+    {t: "Conversión", c: "Mc 1, 15", l: "Lectio: Conviértanse y crean. Meditatio: ¿Hacia dónde voy? Oratio: Perdóname y guíame. Contemplatio: Todo es nuevo.", d: "Cambia un hábito que te aleja de Dios por uno de servicio."},
+    {t: "Seguimiento", c: "Lc 9, 23", l: "Lectio: Tome su cruz y sígame. Meditatio: ¿Qué es cargar la cruz? Oratio: Señor, sígueme. Contemplatio: En tu camino.", d: "Haz un pequeño sacrificio por amor a Jesús."},
+    {t: "Testimonio", c: "Mt 5, 14", l: "Lectio: Son la luz del mundo. Meditatio: ¿Fe que se hace obra? Oratio: Que mi vida te anuncie. Contemplatio: Luz para el mundo.", d: "Envía un mensaje de esperanza a alguien que no conoce a Dios."},
+    {t: "Misión", c: "Mt 28, 19", l: "Lectio: Vayan y hagan discípulos. Meditatio: Iglesia en salida. Oratio: Envíame, Señor. Contemplatio: Misión cumplida.", d: "Propón una acción concreta de ayuda en tu entorno."}
   ];
 
-  const select = document.getElementById('menu-modulos');
-  contenido.forEach((m, i) => {
-    let opt = document.createElement('option');
-    opt.value = i + 1;
-    opt.text = `Módulo ${i + 1}: ${m.t}`;
-    select.appendChild(opt);
-  });
+  const menu = document.getElementById('menu');
+  data.forEach((m, i) => menu.innerHTML += `<option value="${i}">Módulo ${i+1}: ${m.t}</option>`);
 
-  function irAModulo() {
-    const val = select.value;
-    if(val) mostrarModulo(parseInt(val));
-  }
-
-  function mostrarModulo(id) {
-    const m = contenido[id - 1];
-    document.getElementById('contenedor-modulos').innerHTML = `
-      <div class="nav-bar">
-        <button class="btn-nav" onclick="mostrarModulo(${id - 1})" ${id==1?'disabled':''}>⬅️</button>
-        <span>Módulo ${id} de 10</span>
-        <button class="btn-nav" onclick="mostrarModulo(${id + 1})" ${id==10?'disabled':''}>➡️</button>
-      </div>
-      <h3>${m.t}</h3>
-      <p><strong>Cita:</strong> ${m.c}</p>
-      <details><summary>📖 Lectio Divina</summary><p>${m.l}</p></details>
-      <div class="oracion"><strong>🙏 Oración:</strong> ${m.o}</div>
+  function mostrarModulo(i) {
+    const m = data[i];
+    document.getElementById('app').innerHTML = `
+      <h3>${m.t}</h3><p><strong>Cita:</strong> ${m.c}</p>
+      <div class="lectio-box">${m.l.replace(/\./g, '.<br>')}</div>
       <div class="desafio"><strong>🎯 Desafío Real:</strong> ${m.d}</div>
-      <button class="btn" onclick="alert('Bitácora actualizada')">💾 Guardar avance</button>
-    `;
-    select.value = id;
+      <button class="btn">💾 Guardar avance</button>`;
   }
+  mostrarModulo(0);
 </script>
 </body>
 </html>
