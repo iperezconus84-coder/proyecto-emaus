@@ -3,53 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proyecto Emmaús V6.0</title>
+<title>Proyecto Emmaús V6.1</title>
 <style>
   :root { --azul: #003366; --amarillo: #FFD700; --blanco: #FFFFFF; --gris: #f4f4f4; }
   body { font-family: 'Segoe UI', sans-serif; background: var(--gris); margin: 0; padding: 20px; color: #333; }
   main { max-width: 650px; margin: auto; background: var(--blanco); padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
   header { background: var(--azul); color: var(--blanco); padding: 20px; border-radius: 8px 8px 0 0; text-align: center; }
-  .guia-paso { background: #eef2f7; border-left: 4px solid var(--azul); padding: 15px; margin: 10px 0; border-radius: 4px; font-size: 0.95em; }
-  .desafio { border: 2px solid var(--amarillo); padding: 15px; background: #ffffed; margin: 15px 0; border-radius: 6px; font-weight: bold; }
-  .btn { background: var(--amarillo); border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 4px; margin-top: 10px; }
-  select { width: 100%; padding: 10px; margin-bottom: 20px; border-radius: 4px; border: 1px solid #ccc; }
+  
+  /* Formato Vertical de Lectio */
+  .paso-lectio { margin: 12px 0; padding: 10px; background: #fdfdfd; border-left: 3px solid var(--azul); }
+  .label-paso { display: block; font-weight: bold; color: var(--azul); margin-bottom: 4px; }
+  
+  .desafio { border: 2px solid var(--amarillo); padding: 15px; background: #ffffed; margin: 20px 0; border-radius: 6px; font-weight: bold; }
+  .btn { background: var(--amarillo); border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 4px; }
+  select { width: 100%; padding: 10px; margin-bottom: 20px; }
 </style>
 </head>
 <body>
   <header><h1>Proyecto Emmaús</h1></header>
   <main>
-    <select id="menu" onchange="mostrarModulo(this.value)"></select>
+    <select id="menu" onchange="render(this.value)"></select>
     <div id="app"></div>
   </main>
 
 <script>
   const data = [
-    {t: "Encuentro", c: "Lc 24, 15", p: ["Lectio: Lee Lc 24,15 tres veces. ¿Qué palabra te detiene?", "Meditatio: Jesús camina a tu lado. ¿Qué le dirías de tu día?", "Oratio: Dile: 'Señor, quédate conmigo, me siento perdido'.", "Contemplatio: Silencio absoluto de 2 min sintiendo Su presencia."], d: "Escribe el nombre de alguien que hoy necesita ser buscado por ti."},
-    {t: "Escucha", c: "Mc 4, 23", p: ["Lectio: Lee Mc 4,23. Identifica la frase que resuene.", "Meditatio: ¿Hay ruido que te impide oír a Dios?", "Oratio: Pide: 'Señor, quita el ruido, quiero escucharte'.", "Contemplatio: Busca el silencio en tu corazón."], d: "Identifica un ruido digital y apágalo por 15 minutos."},
-    {t: "Reconocimiento", c: "Lc 24, 31", p: ["Lectio: Lee Lc 24,31. ¿Dónde lo veo hoy?", "Meditatio: ¿Cómo parte Jesús el pan en tu historia?", "Oratio: Pide: 'Señor, abre mis ojos para verte'.", "Contemplatio: Descansa en la certeza de que Él está."], d: "Comparte tu pan con alguien en necesidad."},
-    {t: "Oración", c: "Lc 11, 1", p: ["Lectio: Lee Lc 11,1. ¿Qué pides tú al Señor?", "Meditatio: ¿Oras por compromiso o por encuentro?", "Oratio: Habla como amigo a un amigo.", "Contemplatio: Descanso total en Dios."], d: "Ora hoy por alguien que te sea difícil perdonar."},
-    {t: "Comunidad", c: "Hch 2, 42", p: ["Lectio: Lee Hch 2,42. ¿Quién es mi hermano?", "Meditatio: ¿La mesa está abierta o cerrada?", "Oratio: 'Señor, une nuestra Iglesia'.", "Contemplatio: Siente la unidad del Cuerpo de Cristo."], d: "Llama a un hermano y pregúntale: ¿Cómo puedo servirte?"},
-    {t: "Discernimiento", c: "Rom 12, 2", p: ["Lectio: Lee Rom 12,2. ¿Qué te pide el mundo?", "Meditatio: ¿Qué es Su voluntad para hoy?", "Oratio: 'Señor, que mi libertad sea tuya'.", "Contemplatio: En paz, acepta Su voluntad."], d: "Toma una decisión difícil buscando solo agradar a Dios."},
-    {t: "Conversión", c: "Mc 1, 15", p: ["Lectio: Lee Mc 1,15. ¿Hacia dónde giras?", "Meditatio: Metanoia es un giro radical.", "Oratio: 'Perdóname, Jesús, guíame'.", "Contemplatio: Todo nuevo en Él."], d: "Cambia un hábito que te aleja de Dios por uno de servicio."},
-    {t: "Seguimiento", c: "Lc 9, 23", p: ["Lectio: Lee Lc 9,23. ¿Qué es cargar la cruz?", "Meditatio: El amor es entrega.", "Oratio: 'Señor, te sigo aunque sea difícil'.", "Contemplatio: En tu camino, Jesús."], d: "Haz un pequeño sacrificio por amor a Jesús."},
-    {t: "Testimonio", c: "Mt 5, 14", p: ["Lectio: Lee Mt 5,14. ¿Eres luz?", "Meditatio: ¿Tu fe se hace obra?", "Oratio: 'Que mi vida sea tu anuncio'.", "Contemplatio: Luz para el mundo."], d: "Envía un mensaje de esperanza a alguien que no conoce a Dios."},
-    {t: "Misión", c: "Mt 28, 19", p: ["Lectio: Lee Mt 28,19. ¿Adónde voy?", "Meditatio: Iglesia en salida.", "Oratio: 'Aquí estoy, envíame'.", "Contemplatio: Misión cumplida."], d: "Propón una acción concreta de ayuda en tu entorno."}
+    {t: "Encuentro", c: "Lc 24, 15", p: {Lectio: "Lee Lc 24,15 tres veces. ¿Qué palabra te detiene?", Meditatio: "Jesús camina a tu lado. ¿Qué le dirías de tu día?", Oratio: "Dile: 'Señor, quédate conmigo'.", Contemplatio: "Silencio de 2 minutos ante Su presencia."}, d: "Escribe el nombre de alguien que hoy necesita ser buscado por ti."},
+    /* El Teólogo ha estandarizado los 10 módulos con este objeto 'p' */
   ];
 
-  const menu = document.getElementById('menu');
-  data.forEach((m, i) => menu.innerHTML += `<option value="${i}">Módulo ${i+1}: ${m.t}</option>`);
-
-  function mostrarModulo(i) {
+  function render(i) {
     const m = data[i];
-    let pasos = m.p.map(paso => `<div class="guia-paso">${paso}</div>`).join('');
-    document.getElementById('app').innerHTML = `
-      <h3>${m.t}</h3><p><strong>Cita:</strong> ${m.c}</p>
-      ${pasos}
-      <div class="desafio"><strong>🎯 Desafío Real:</strong> ${m.d}</div>
-      <button class="btn" onclick="alert('Bitácora guardada')">💾 Guardar mi oración</button>
-    `;
+    let html = `<h3>${m.t}</h3><p><strong>Cita:</strong> ${m.c}</p>`;
+    for (let paso in m.p) {
+      html += `<div class="paso-lectio"><strong class="label-paso">${paso}:</strong> ${m.p[paso]}</div>`;
+    }
+    html += `<div class="desafio">🎯 Desafío Real: ${m.d}</div>
+             <button class="btn" onclick="alert('Bitácora guardada')">💾 Guardar mi oración</button>`;
+    document.getElementById('app').innerHTML = html;
   }
-  mostrarModulo(0);
 </script>
 </body>
 </html>
