@@ -3,18 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proyecto Emmaús V7.5</title>
+<title>Proyecto Emmaús V7.7</title>
 <style>
   :root { --azul: #003366; --amarillo: #FFD700; --blanco: #FFFFFF; --gris: #f4f4f4; }
   body { font-family: 'Segoe UI', sans-serif; background: var(--gris); margin: 0; padding-bottom: 50px; }
   header { background: var(--azul); color: var(--blanco); padding: 20px; text-align: center; }
-  nav { display: flex; justify-content: center; background: #fff; padding: 10px; border-bottom: 2px solid var(--azul); flex-wrap: wrap; }
-  nav button { background: none; border: none; padding: 10px 15px; cursor: pointer; color: var(--azul); font-weight: bold; }
+  nav { display: flex; justify-content: center; background: #fff; padding: 10px; border-bottom: 2px solid var(--azul); }
+  nav button { background: none; border: none; padding: 10px; cursor: pointer; color: var(--azul); font-weight: bold; }
   main { max-width: 650px; margin: 20px auto; background: var(--blanco); padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-  .tarjeta { padding: 15px; border: 1px solid #ddd; margin-bottom: 10px; border-radius: 4px; }
-  summary { font-weight: bold; cursor: pointer; color: var(--azul); list-style: none; }
-  .texto-espiritual { font-style: italic; line-height: 1.6; color: #444; }
-  .btn-cta { background: var(--amarillo); border: none; padding: 12px 24px; font-weight: bold; cursor: pointer; border-radius: 4px; width: 100%; margin-top: 20px; }
+  .btn-mod { display: block; width: 100%; padding: 15px; margin: 5px 0; background: var(--azul); color: white; border: none; border-radius: 4px; text-align: left; cursor: pointer; }
+  .paso-lectio { margin: 12px 0; padding: 10px; background: #fdfdfd; border-left: 3px solid var(--azul); }
+  .label-paso { display: block; font-weight: bold; color: var(--azul); }
 </style>
 </head>
 <body>
@@ -22,24 +21,29 @@
   <nav>
     <button onclick="router('home')">Inicio</button>
     <button onclick="router('itinerario')">Itinerario</button>
-    <button onclick="router('materiales')">Materiales</button>
-    <button onclick="router('blog')">Blog</button>
   </nav>
   <main id="view-port"></main>
 
 <script>
-  const views = {
-    home: `<h2>¿Quiénes somos?</h2><p>Somos jóvenes peregrinos. Como los discípulos de Emaús, nuestra vida se abre al reconocimiento de Jesús Resucitado. No buscamos respuestas teóricas, sino el encuentro que transforma la tristeza en esperanza y el cansancio en misión.</p>`,
-    itinerario: `<h3>Itinerario Orante</h3><p>Camino de 10 pasos hacia la plenitud.</p><button class="btn-cta" onclick="alert('Iniciando Módulo 1')">👣 Iniciar Camino</button>`,
-    materiales: `<h3>Devocionario Juvenil</h3>
-      <details class="tarjeta"><summary>🙏 Oración de Emaús</summary><p class="texto-espiritual">Señor Jesús, que sales a nuestro encuentro en el camino de nuestra vida, camina hoy con nosotros. Que tu Palabra arda en nuestro pecho y que, al partir el pan, nuestros ojos se abran para reconocerte. Quédate con nosotros, porque atardece, y tú eres nuestra única luz y esperanza. Amén.</p></details>
-      <details class="tarjeta"><summary>👣 Oración del Joven Peregrino</summary><p class="texto-espiritual">Padre, me pongo en camino. Que mis pies sigan tus huellas, mis ojos vean tu rostro en el hermano y mi corazón no se detenga ante el miedo. Haz de mi vida un paso firme hacia la santidad. Amén.</p></details>
-      <details class="tarjeta"><summary>🕊️ Invocación al Espíritu Santo</summary><p class="texto-espiritual">Ven, Espíritu Santo, ilumina mi entendimiento y abre mi corazón a la Verdad. Que tu soplo disipe mis sombras y me convierta en testigo de la Resurrección. Amén.</p></details>
-      <details class="tarjeta"><summary>📿 Santo Rosario Juvenil</summary><p class="texto-espiritual">María, Madre del camino, enséñanos a meditar los misterios de la vida de tu Hijo. Que cada Avemaría sea un paso más hacia el corazón de Jesús.</p></details>`,
-    blog: `<h3>Blog</h3><p>Espacio de encuentro y testimonios. Próximamente contenido nuevo.</p>`
-  };
+  const data = [
+    {t: "Encuentro", c: "Lc 24, 15", p: {Lectio: "Lee Lc 24,15. ¿Qué palabra te detiene?", Meditatio: "Jesús camina contigo. ¿Qué le dices de tu día?", Oratio: "Dile: 'Señor, quédate conmigo'.", Contemplatio: "Silencio de 2 min."}},
+    {t: "Escucha", c: "Mc 4, 23", p: {Lectio: "Lee Mc 4,23. Identifica la voz del Señor.", Meditatio: "¿Qué ruido te impide oírle?", Oratio: "Pide: 'Quita el ruido, quiero oírte'.", Contemplatio: "Silencio interior."}}
+  ];
 
-  function router(view) { document.getElementById('view-port').innerHTML = views[view]; }
+  function router(view, i = null) {
+    const main = document.getElementById('view-port');
+    if (view === 'home') main.innerHTML = "<h2>Inicio</h2><p>Bienvenido al camino.</p>";
+    if (view === 'itinerario') {
+      main.innerHTML = "<h3>Itinerario</h3>" + data.map((m, index) => `<button class="btn-mod" onclick="router('detalle', ${index})">Módulo ${index+1}: ${m.t}</button>`).join('');
+    }
+    if (view === 'detalle') {
+      const m = data[i];
+      let html = `<h3>${m.t}</h3><p><strong>Cita:</strong> ${m.c}</p>`;
+      for (let paso in m.p) html += `<div class="paso-lectio"><strong class="label-paso">${paso}:</strong> ${m.p[paso]}</div>`;
+      html += `<button onclick="router('itinerario')">⬅ Volver al Itinerario</button>`;
+      main.innerHTML = html;
+    }
+  }
   router('home');
 </script>
 </body>
