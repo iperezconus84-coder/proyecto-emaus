@@ -22,7 +22,6 @@
     .paso-titulo { font-weight: bold; color: var(--azul); display: block; margin-bottom: 5px; }
     .btn-mod { display: block; width: 100%; padding: 15px; margin: 8px 0; background: var(--azul); color: white; border: none; border-radius: 8px; text-align: left; cursor: pointer; }
     .btn-cta { background: var(--amarillo); border: none; padding: 15px; font-weight: bold; border-radius: 8px; width: 100%; color: var(--azul); cursor: pointer; margin-top: 15px; }
-    .btn-share { background: #f4f4f4; color: var(--azul); border: 1px solid #ddd; margin-top: 10px; }
     .aviso-ritmo { background: #fffdf0; border-left: 4px solid var(--amarillo); padding: 14px 16px; border-radius: 4px; margin: 18px 0; font-size: 0.95em; color: #555; line-height: 1.5; }
     .tarjeta { margin-bottom: 15px; border-left: 4px solid var(--azul); padding: 15px; background: #fafafa; border-radius: 0 8px 8px 0; }
   </style>
@@ -40,16 +39,23 @@
 
   <script>
     const data = [
-      {t: "Encuentro", c: "Lc 24, 15", p: {"1. Lectura": "Jesús camina con ellos. ¿Dónde está Él hoy en tu rutina?", "2. Meditación": "¿Qué te impide reconocerlo?", "3. Oración": "Quédate conmigo, Señor.", "4. Contemplación": "Camina hoy 5 min en silencio."}},
-      {t: "Escucha", c: "Mc 4, 23", p: {"1. Lectura": "El que tenga oídos, oiga.", "2. Meditación": "¿Qué ruido interno te distrae?", "3. Oración": "Habla, Señor, tu siervo escucha.", "4. Contemplación": "Escucha a alguien sin interrumpir."}},
-      {t: "Reconocimiento", c: "Lc 24, 31", p: {"1. Lectura": "Se les abrieron los ojos.", "2. Meditación": "¿Qué bondad has recibido?", "3. Oración": "Gracias, Señor, por tu presencia.", "4. Contemplación": "Agradece un pequeño detalle."}},
-      {t: "Oración", c: "Lc 11, 1", p: {"1. Lectura": "Enséñanos a orar.", "2. Meditación": "¿Sientes la oración como carga?", "3. Oración": "Padre, confío en tu amor.", "4. Contemplación": "Reza un Padre Nuestro pausado."}},
-      {t: "Comunidad", c: "Hch 2, 42", p: {"1. Lectura": "Perseveraban en la comunión.", "2. Meditación": "¿Quiénes son tus hermanos?", "3. Oración": "Hazme puente de unión.", "4. Contemplación": "Envía un mensaje de aliento."}},
-      {t: "Discernimiento", c: "1Jn 4, 1", p: {"1. Lectura": "Poned a prueba los espíritus.", "2. Meditación": "¿Qué te da verdadera paz?", "3. Oración": "Dame luz, Espíritu Santo.", "4. Contemplación": "Elige lo que te hace libre."}},
-      {t: "Conversión", c: "Mc 1, 15", p: {"1. Lectura": "Convertíos y creed.", "2. Meditación": "¿Qué actitud necesitas dejar?", "3. Oración": "Crea en mí un corazón nuevo.", "4. Contemplación": "Realiza un acto de servicio oculto."}},
-      {t: "Seguimiento", c: "Lc 9, 23", p: {"1. Lectura": "Niéguese a sí mismo.", "2. Meditación": "¿Qué añadido innecesario te pesa?", "3. Oración": "Mi vida es tuya, Señor.", "4. Contemplación": "Renuncia a un capricho hoy."}},
-      {t: "Testimonio", c: "Mt 5, 14", p: {"1. Lectura": "Sois luz del mundo.", "2. Meditación": "¿Tu vida ilumina?", "3. Oración": "Que mi vida sea un faro.", "4. Contemplación": "Comparte algo positivo."}},
-      {t: "Misión", c: "Mt 28, 19", p: {"1. Lectura": "Id y anunciad.", "2. Meditación": "¿A quién urge esperanza?", "3. Oración": "Envíame, aquí estoy.", "4. Contemplación": "Invita a alguien al proyecto."}}
+      {t: "Encuentro", c: "Lc 24, 15", p: {"1. Lectura": "Lee la cita Lc 24, 15 lentamente una vez. Ahora, vuelve a leerla y detente en las palabras: 'Jesús se acercó'.", "2. Meditación": "Cierra los ojos e imagina el camino de Emaús. ¿Cómo es el paisaje? Imagínate caminando junto a Jesús. ¿Qué le dirías si estuvieras ahí?", "3. Oración": "Quédate conmigo, Señor, porque el día declina. No dejes que camine solo.", "4. Contemplación": "Permanece en silencio 5 minutos, sintiendo simplemente que Él camina a tu lado, en tu propia historia."}},
+      {t: "Escucha", c: "Mc 4, 23", p: {"1. Lectura": "Lee Mc 4, 23. Lee de nuevo: 'El que tenga oídos, oiga'. ¿Qué susurro de Dios está intentando llegar a ti hoy?", "2. Meditación": "Observa el ruido de tu mente: pensamientos, miedos, pendientes. Imagina que dejas cada uno de ellos a un lado, como si te quitaras una mochila pesada.", "3. Oración": "Habla, Señor, porque tu siervo escucha. Quita el ruido que me impide oírte.", "4. Contemplación": "Durante el resto del día, intenta practicar la escucha activa: no planees tu respuesta mientras otro habla, solo escucha profundamente."}},
+      {t: "Reconocimiento", c: "Lc 24, 31", p: {"1. Lectura": "Lee Lc 24, 31. Repite mentalmente: 'Se les abrieron los ojos'.", "2. Meditación": "Revisa los últimos 3 días como si fuera una película. ¿Dónde hubo un gesto de bondad? ¿Dónde viste el amor de Jesús disfrazado de cotidianeidad?", "3. Oración": "Gracias, Señor, por abrir mis ojos a tu bondad escondida.", "4. Contemplación": "Envía un mensaje corto de agradecimiento a alguien hoy por un detalle pequeño. Ese es el rostro de Cristo."}},
+      {t: "Oración", c: "Lc 11, 1", p: {"1. Lectura": "Lee Lc 11, 1. Vuelve a leer la petición: 'Señor, enséñanos a orar'.", "2. Meditación": "Adopta una postura cómoda. Imagina que Jesús te mira con amor, sin juzgarte. No necesitas decir nada; solo deja que Él te mire.", "3. Oración": "Padre, confío en tu amor. Enséñame a hablarte desde lo que soy.", "4. Contemplación": "Reza el Padre Nuestro pausado. Detente en cada palabra, dejando que el significado repose en tu corazón antes de pasar a la siguiente."}},
+      {t: "Comunidad", c: "Hch 2, 42", p: {"1. Lectura": "Lee Hch 2, 42. Imagina el ambiente de los primeros cristianos: compartiendo el pan, la vida, la alegría.", "2. Meditación": "¿Quiénes son los hermanos que Jesús ha puesto en tu camino? ¿Cómo te sientes al ver sus rostros?", "3. Oración": "Señor, gracias por mis hermanos. Hazme puente de unidad y paz.", "4. Contemplación": "Identifica a alguien que no ha estado bien. Envíale un mensaje de aliento sincero hoy, sin esperar nada a cambio."}},
+      {t: "Discernimiento", c: "1Jn 4, 1", p: {"1. Lectura": "Lee 1Jn 4, 1. Reflexiona: 'Poned a prueba los espíritus'.", "2. Meditación": "Ante una situación que te preocupa, siente qué opción te da 'paz profunda' y cuál te da 'ansiedad' o 'confusión'.", "3. Oración": "Espíritu Santo, dame la luz para ver qué viene de Ti y qué no.", "4. Contemplación": "Pregúntate antes de actuar: '¿Esto construye o divide?'. Quédate con la opción que te hace más libre y más amoroso."}},
+      {t: "Conversión", c: "Mc 1, 15", p: {"1. Lectura": "Lee Mc 1, 15. Repite: 'Convertíos y creed'.", "2. Meditación": "Imagina que frente a ti hay un camino nuevo. ¿Qué actitud, queja o orgullo te impide caminar ligero por él?", "3. Oración": "Crea en mí, Señor, un corazón nuevo capaz de volver a Ti.", "4. Contemplación": "Pon esa actitud específica en manos de Jesús. Realiza un pequeño acto de servicio hoy, oculto, solo para Dios."}},
+      {t: "Seguimiento", c: "Lc 9, 23", p: {"1. Lectura": "Lee Lc 9, 23. Reflexiona: 'Niéguese a sí mismo y tome su cruz'.", "2. Meditación": "La cruz no es algo que buscamos, es lo que aceptamos por amor. ¿Qué es lo que hoy te pesa más y puedes ofrecerlo por amor?", "3. Oración": "Mi vida es tuya, Señor, sin condiciones. Quiero caminar tras tus huellas.", "4. Contemplación": "Renuncia a un capricho pequeño hoy y entrega ese tiempo a la oración o al servicio."}},
+      {t: "Testimonio", c: "Mt 5, 14", p: {"1. Lectura": "Lee Mt 5, 14. 'Sois la luz del mundo'.", "2. Meditación": "Imagina una vela encendida en la oscuridad. ¿Tu vida ayuda a otros a ver el camino?", "3. Oración": "Señor, que mi forma de amar sea reflejo de tu luz.", "4. Contemplación": "Lista dos talentos que tienes. ¿Cómo puedes usarlos hoy para hacer el bien a alguien más? Comparte algo positivo."}},
+      {t: "Misión", c: "Mt 28, 19", p: {"1. Lectura": "Lee Mt 28, 19. Imagina a Jesús diciéndotelo directamente a ti.", "2. Meditación": "Dios no te dio el regalo de la fe para guardártelo. ¿A quién le hace falta un mensaje de esperanza?", "3. Oración": "Envíame, Señor. No soy capaz, pero Tú haces todo en mí.", "4. Contemplación": "Elige a una persona que sufra. Piensa un gesto concreto (una visita, un mensaje) para acercarle a Dios. Invítala al Proyecto."}}
+    ];
+
+    const materiales = [
+      {s:"🙏 Oración de Emaus", c:"Señor Jesús, que sales a nuestro encuentro en el camino de nuestra vida, camina hoy con nosotros y abre nuestros ojos para reconocerte en el hermano, en la fracción del pan y en la esperanza que nunca muere. Quédate con nosotros, porque atardece. Amén."}, 
+      {s:"👣 Oración del Joven Peregrino", c:"Padre, me pongo en camino. Sé que no siempre sé a dónde voy, pero confío en que Tú conoces el final del sendero. Dame valentía para soltar lo que me pesa y libertad para abrazar lo que me hace crecer. Que mis pies sigan tus huellas. Amén."}, 
+      {s:"🕊️ Invocación al Espíritu Santo", c:"Ven, Espíritu Santo, llena los corazones de tus fieles y enciende en ellos el fuego de tu amor. Envía, Señor, tu Espíritu y todo será creado, y renovarás la faz de la tierra. Amén."}, 
+      {s:"📿 Santo Rosario Juvenil", c:"María, Madre del camino, acompáñanos a orar. Que al contemplar los misterios de la vida de tu Hijo, aprendamos a decir 'fiat' a todo lo que Dios nos pida. Ruega por nosotros, peregrinos de Emaus. Amén."}
     ];
 
     function router(view, i = null) {
@@ -61,20 +67,17 @@
       else if(view === 'materiales') buttons[2].classList.add('active');
 
       if (view === 'home') {
-        main.innerHTML = "<h2>Proyecto Emaús: Tu camino, tu encuentro.</h2><p><span style='font-size:1.4em; font-weight:bold; color:var(--azul);'>Bienvenido</span> a Emaus. No eres un usuario más, eres un peregrino.</p><div class='aviso-ritmo'>💛 Un consejo: este itinerario no es una carrera. Recórrelo a tu ritmo.</div><button class='btn-cta' onclick='router(\"itinerario\")'>👣 Iniciar mi Itinerario</button>";
+        main.innerHTML = "<h2>Proyecto Emaús: Tu camino, tu encuentro.</h2><p><span style='font-size:1.4em; font-weight:bold; color:var(--azul);'>Bienvenido</span> a Emaus. No eres un usuario más, eres un peregrino. Este camino no se hace solo; se hace en compañía. Aquí no encontrarás teoría, sino un encuentro.</p><div class='aviso-ritmo'>💛 Un consejo antes de empezar: este itinerario no es una carrera. Está pensado para recorrerse a razón de un módulo por semana, dándote tiempo real para leer con calma la Palabra, orar sin apuro y compartir lo que vas viviendo con otras personas. Lo importante no es llegar rápido al final, sino ir formando el hábito de la lectura orante.</div><button class='btn-cta' onclick='router(\"itinerario\")'>👣 Iniciar mi Itinerario</button>";
       } else if (view === 'itinerario') {
         main.innerHTML = "<h3>Itinerario Orante</h3>" + data.map((m, idx) => `<button class='btn-mod' onclick='router(\"detalle\", ${idx})'>Módulo ${idx+1}: ${m.t}</button>`).join('');
       } else if (view === 'detalle') {
         const m = data[i];
         let html = `<h3>Módulo ${i+1}: ${m.t}</h3><p><strong>Cita:</strong> ${m.c}</p>`;
         for(let p in m.p) html += `<div class='lectio-paso'><span class='paso-titulo'>${p}</span><p>${m.p[p]}</p></div>`;
-        html += `<button class='btn-cta' onclick='shareModule("${m.t}")'>📤 Invitar a un amigo</button>`;
-        html += `<button class='btn-cta' style='background:#ddd' onclick='router(\"itinerario\")'>⬅ Volver al Itinerario</button>`;
+        html += `<button class='btn-cta' onclick='shareModule("${m.t}")'>📤 Invitar a un amigo</button><button class='btn-cta' style='background:#ddd' onclick='router(\"itinerario\")'>⬅ Volver al Itinerario</button>`;
         main.innerHTML = html;
       } else if (view === 'materiales') {
-        main.innerHTML = "<h3>Materiales: Devocionario</h3>" + 
-        [{s:"🙏 Oración de Emaus", c:"Señor Jesús, que sales a nuestro encuentro..."}, {s:"👣 Oración del Joven Peregrino", c:"Padre, me pongo en camino..."}, {s:"🕊️ Invocación al Espíritu Santo", c:"Ven, Espíritu Santo..."}, {s:"📿 Santo Rosario Juvenil", c:"María, Madre del camino..."}]
-        .map(o => `<div class='tarjeta'><span class='paso-titulo'>${o.s}</span><p>${o.c}</p></div>`).join('');
+        main.innerHTML = "<h3>Materiales: Devocionario</h3>" + materiales.map(o => `<div class='tarjeta'><span class='paso-titulo'>${o.s}</span><p>${o.c}</p></div>`).join('');
       }
     }
 
