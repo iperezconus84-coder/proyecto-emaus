@@ -4,7 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Proyecto Emaus</title>
+<meta name="theme-color" content="#003366">
 <link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="logo.jpg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Emaus">
 <style>
   :root { --azul: #003366; --amarillo: #FFD700; --blanco: #FFFFFF; --gris: #f4f4f4; }
   body { font-family: 'Segoe UI', sans-serif; background: var(--gris); margin: 0; padding-bottom: 50px; }
@@ -70,6 +75,13 @@
     } else { alert("Copia el enlace de tu navegador para invitar a alguien."); }
   }
   router('home');
+
+  // Registro del Service Worker — necesario para que la app sea instalable
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(err => console.warn('SW no registrado:', err));
+    });
+  }
 </script>
 </body>
 </html>
