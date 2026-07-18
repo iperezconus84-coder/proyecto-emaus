@@ -25,6 +25,7 @@
   .tarjeta { margin-bottom: 10px; border: 1px solid #eee; border-radius: 4px; padding: 12px; background: #fafafa; }
   summary { font-weight: bold; color: var(--azul); cursor: pointer; padding: 5px; }
   p.intro { font-style: italic; color: #555; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px; }
+  .aviso-ritmo { background: #fffdf0; border-left: 4px solid var(--amarillo); padding: 14px 16px; border-radius: 4px; margin: 18px 0; font-size: 0.95em; color: #555; line-height: 1.5; }
 </style>
 </head>
 <body>
@@ -52,7 +53,7 @@
   ];
   function router(view, i = null) {
     const main = document.getElementById('view-port');
-    if (view === 'home') main.innerHTML = "<h2>Proyecto Emaus: Tu camino, tu encuentro.</h2><p>Bienvenido a Emaus. No eres un usuario más, eres un peregrino. Este camino no se hace solo; se hace en compañía. Aquí no encontrarás teoría, sino un encuentro.</p><button class='btn-cta' onclick='router(\"itinerario\")'>👣 Iniciar mi Itinerario</button>";
+    if (view === 'home') main.innerHTML = "<h2>Proyecto Emaus: Tu camino, tu encuentro.</h2><p><span style='font-size:1.4em; font-weight:bold; color:var(--azul);'>Bienvenido</span> a Emaus. No eres un usuario más, eres un peregrino. Este camino no se hace solo; se hace en compañía. Aquí no encontrarás teoría, sino un encuentro.</p><div class='aviso-ritmo'>💛 Un consejo antes de empezar: este itinerario no es una carrera. Está pensado para recorrerse a razón de un módulo por semana, dándote tiempo real para leer con calma la Palabra, orar sin apuro y compartir lo que vas viviendo con otras personas. Lo importante no es llegar rápido al final, sino ir formando el hábito de la lectura orante, la oración y el encuentro con los demás.</div><button class='btn-cta' onclick='router(\"itinerario\")'>👣 Iniciar mi Itinerario</button>";
     else if (view === 'itinerario') main.innerHTML = "<h3>Itinerario Orante</h3>" + data.map((m, index) => `<button class='btn-mod' onclick='router(\"detalle\", ${index})'>Módulo ${index+1}: ${m.t}</button>`).join('');
     else if (view === 'detalle') {
       const m = data[i];
