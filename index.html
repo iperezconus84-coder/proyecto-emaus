@@ -1,88 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proyecto Emaus</title>
-<meta name="theme-color" content="#003366">
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="logo.jpg">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Emaus">
-<style>
-  :root { --azul: #003366; --amarillo: #FFD700; --blanco: #FFFFFF; --gris: #f4f4f4; }
-  body { font-family: 'Segoe UI', sans-serif; background: var(--gris); margin: 0; padding-bottom: 50px; }
-  header { background: var(--blanco); padding: 15px; text-align: center; border-bottom: 2px solid var(--azul); }
-  .logo { max-width: 180px; height: auto; display: block; margin: 0 auto; }
-  nav { display: flex; justify-content: center; background: var(--blanco); padding: 10px; border-bottom: 1px solid #ddd; flex-wrap: wrap; }
-  nav button { background: none; border: none; padding: 10px 15px; cursor: pointer; color: var(--azul); font-weight: bold; }
-  nav a { text-decoration: none; color: #25D366; font-weight: bold; padding: 10px 15px; display: inline-block; cursor: pointer; }
-  main { max-width: 650px; margin: 20px auto; background: var(--blanco); padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-  .btn-mod { display: block; width: 100%; padding: 15px; margin: 5px 0; background: var(--azul); color: white; border: none; border-radius: 4px; text-align: left; cursor: pointer; transition: 0.3s; }
-  .btn-mod:hover { background: #004a94; }
-  .btn-cta { background: var(--amarillo); border: none; padding: 15px 30px; font-weight: bold; cursor: pointer; border-radius: 4px; width: 100%; margin-top: 20px; color: var(--azul); transition: 0.3s; }
-  .tarjeta { margin-bottom: 10px; border: 1px solid #eee; border-radius: 4px; padding: 12px; background: #fafafa; }
-  summary { font-weight: bold; color: var(--azul); cursor: pointer; padding: 5px; }
-  p.intro { font-style: italic; color: #555; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px; }
-  .aviso-ritmo { background: #fffdf0; border-left: 4px solid var(--amarillo); padding: 14px 16px; border-radius: 4px; margin: 18px 0; font-size: 0.95em; color: #555; line-height: 1.5; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto Emaús</title>
+  <meta name="theme-color" content="#003366">
+  <link rel="manifest" href="manifest.json">
+  <style>
+    :root { --azul: #003366; --amarillo: #FFD700; --blanco: #FFFFFF; --gris: #f4f4f4; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--gris); margin: 0; padding-bottom: 50px; color: #333; }
+    header { background: var(--blanco); padding: 15px; text-align: center; border-bottom: 2px solid var(--azul); }
+    .logo { max-width: 150px; height: auto; display: block; margin: 0 auto; }
+    nav { display: flex; justify-content: center; background: var(--blanco); padding: 10px; border-bottom: 1px solid #ddd; }
+    nav button { border: none; background: none; padding: 10px; cursor: pointer; color: var(--azul); font-weight: 600; }
+    nav button.active { border-bottom: 3px solid var(--amarillo); }
+    main { max-width: 650px; margin: 20px auto; background: var(--blanco); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    .lectio-paso { margin-bottom: 20px; border-left: 4px solid var(--amarillo); padding-left: 15px; }
+    .paso-titulo { font-weight: bold; color: var(--azul); display: block; margin-bottom: 5px; }
+    .btn-mod { display: block; width: 100%; padding: 15px; margin: 8px 0; background: var(--azul); color: white; border: none; border-radius: 8px; text-align: left; cursor: pointer; }
+    .btn-cta { background: var(--amarillo); border: none; padding: 15px; font-weight: bold; border-radius: 8px; width: 100%; color: var(--azul); cursor: pointer; }
+  </style>
 </head>
 <body>
-  <header><img src="logo.jpg" alt="Logo Proyecto Emaus" class="logo"></header>
+  <header><img src="logo.jpg" alt="Logo" class="logo"></header>
   <nav id="nav">
     <button onclick="router('home')">Inicio</button>
     <button onclick="router('itinerario')">Itinerario</button>
-    <button onclick="router('materiales')">Materiales</button>
-    <button onclick="window.open('https://espacioemaus.blogspot.com/', '_blank')">Blog</button>
-    <a href="https://whatsapp.com/channel/0029Vb8hGfu2kNFqotfaiD3k" target="_blank">WhatsApp</a>
   </nav>
   <main id="view-port"></main>
-<script>
-  const data = [
-    {t: "Encuentro", c: "Lc 24, 15", intro: "El camino puede sentirse solitario, pero el Resucitado no espera a que llegues a Él; Él se hace caminante contigo.", p: {Inicio: "Señor, hoy me presento tal como soy: con mis cansancios y dudas. Ven y camina a mi lado.", Lectio: "Lc 24, 15. 'Jesús se acercó y se puso a caminar con ellos'. ¿En qué momento de tu día sientes Su presencia?", Dinámica: "Busca un objeto que represente tu caminar hoy y cuéntale a Jesús qué es lo que más te pesa.", Compromiso: "Al salir a la calle, haz un signo de la cruz breve; Él sale contigo al mundo.", Cierre: "Quédate con nosotros, Señor, porque atardece. Amén."}},
-    {t: "Escucha", c: "Mc 4, 23", intro: "En el ruido del mundo, la voz de Dios se vuelve un susurro que exige silencio interior.", p: {Inicio: "Espíritu Santo, limpia mis oídos de todo ruido y prisa. Quiero escuchar tu voz.", Lectio: "Mc 4, 23. 'El que tenga oídos, oiga'. ¿Qué impide escuchar a Dios: el miedo, la prisa o el ruido?", Dinámica: "Dedica 5 min de silencio absoluto. Escribe la palabra que crees que Dios te susurró.", Compromiso: "Escucha a alguien hasta el final, sin interrumpir.", Cierre: "Habla, Señor, tu siervo escucha. Amén."}},
-    {t: "Reconocimiento", c: "Lc 24, 31", intro: "La fe no es ver lo que otros no ven, es aprender a ver lo que ya está ahí: Su presencia.", p: {Inicio: "Señor, mis ojos están velados por mis expectativas. Ábremelos para verte hoy.", Lectio: "Lc 24, 31. 'Se les abrieron los ojos'. ¿En qué detalles de los tuyos has visto bondad?", Dinámica: "Lista 3 momentos de bondad recibida esta semana. Ahí estaba Él.", Compromiso: "Envía un mensaje de agradecimiento a alguien por algo pequeño.", Cierre: "Te reconozco, Señor, en lo pequeño. Amén."}},
-    {t: "Oración", c: "Lc 11, 1", intro: "Orar no es recitar palabras, es dejarse mirar por quien te ama primero.", p: {Inicio: "Enséñame, Señor, a dejar mis máscaras al entrar en tu presencia.", Lectio: "Lc 11, 1. 'Señor, enséñanos a orar'. ¿Sientes la oración como un alivio o una carga?", Dinámica: "Escribe una carta a Dios contando tu miedo más profundo. Él abraza.", Compromiso: "Reza un Padre Nuestro pausado, deteniéndote en cada palabra.", Cierre: "Padre, confío en tu amor. Amén."}},
-    {t: "Comunidad", c: "Hch 2, 42", intro: "La fe solitaria se marchita. Dios nos pensó en plural.", p: {Inicio: "Señor, gracias por los rostros que pusiste en mi vida. Hazme puente.", Lectio: "Hch 2, 42. 'Perseveraban en la comunión'. ¿Quiénes son tus 'apóstoles' hoy?", Dinámica: "Identifica un grupo donde te sientas acogido. ¿Qué aportas tú?", Compromiso: "Envía un mensaje de aliento a ese amigo que no ha estado bien.", Cierre: "Unidos en tu amor, somos tu cuerpo. Amén."}},
-    {t: "Discernimiento", c: "1Jn 4, 1", intro: "Discernir es elegir no entre lo malo y lo bueno, sino entre lo bueno y lo mejor.", p: {Inicio: "Dame luz, Espíritu Santo, para no elegir según mis caprichos.", Lectio: "1Jn 4, 1. 'Poned a prueba los espíritus'. ¿Qué te da paz y qué te inquieta?", Dinámica: "Ante una decisión, pregúntate: ¿Cuál opción me hace más libre?", Compromiso: "Pregunta antes de actuar: '¿Esto construye o divide?'", Cierre: "Dame tu paz, la que no da el mundo. Amén."}},
-    {t: "Conversión", c: "Mc 1, 15", intro: "Convertirse es simplemente girar el corazón hacia la fuente de la vida.", p: {Inicio: "Señor, hoy quiero dejar atrás mis sombras por amor a tu luz.", Lectio: "Mc 1, 15. 'Convertíos'. ¿Qué actitud (queja, orgullo) te roba la alegría?", Dinámica: "Pon tu actitud a corregir en manos de Jesús.", Compromiso: "Realiza un acto de servicio oculto esta semana.", Cierre: "Crea en mí un corazón nuevo. Amén."}},
-    {t: "Seguimiento", c: "Lc 9, 23", intro: "Seguirlo es una aventura: perder la vida para encontrarla de verdad.", p: {Inicio: "Señor, no quiero ser un seguidor a medias. Quiero caminar tras tus huellas.", Lectio: "Lc 9, 23. 'Niéguese a sí mismo'. ¿Qué añadido te pesa hoy?", Dinámica: "Escribe qué miedo te impide arriesgarte por Él.", Compromiso: "Renuncia a un capricho hoy y entrega ese tiempo a Él.", Cierre: "Señor, mi vida es tuya, sin condiciones. Amén."}},
-    {t: "Testimonio", c: "Mt 5, 14", intro: "Tu vida es la Biblia que otros leerán. ¿Qué historia cuenta?", p: {Inicio: "Señor, que mi forma de amar sea reflejo de tu luz.", Lectio: "Mt 5, 14. 'Vosotros sois la luz del mundo'. ¿Tu vida ilumina?", Dinámica: "Lista 2 talentos tuyos. ¿Cómo los usas para servir?", Compromiso: "Comparte algo positivo en tus redes hoy.", Cierre: "Que mi vida sea un faro constante. Amén."}},
-    {t: "Misión", c: "Mt 28, 19", intro: "No eres un discípulo para guardarte el regalo, sino para repartirlo.", p: {Inicio: "Envíame, Señor. No soy capaz, pero tú haces todo.", Lectio: "Mt 28, 19. 'Id y anunciad'. ¿A quién urge sentir esperanza?", Dinámica: "Elige a alguien que sufre y piensa un gesto para acercarle a Él.", Compromiso: "Invita formalmente a alguien al Proyecto Emaus.", Cierre: "Envíame a tu campo. Aquí estoy. Amén."}}
-  ];
-  function router(view, i = null) {
-    const main = document.getElementById('view-port');
-    if (view === 'home') main.innerHTML = "<h2>Proyecto Emaus: Tu camino, tu encuentro.</h2><p><span style='font-size:1.4em; font-weight:bold; color:var(--azul);'>Bienvenido</span> a Emaus. No eres un usuario más, eres un peregrino. Este camino no se hace solo; se hace en compañía. Aquí no encontrarás teoría, sino un encuentro.</p><div class='aviso-ritmo'>💛 Un consejo antes de empezar: este itinerario no es una carrera. Está pensado para recorrerse a razón de un módulo por semana, dándote tiempo real para leer con calma la Palabra, orar sin apuro y compartir lo que vas viviendo con otras personas. Lo importante no es llegar rápido al final, sino ir formando el hábito de la lectura orante, la oración y el encuentro con los demás.</div><button class='btn-cta' onclick='router(\"itinerario\")'>👣 Iniciar mi Itinerario</button>";
-    else if (view === 'itinerario') main.innerHTML = "<h3>Itinerario Orante</h3>" + data.map((m, index) => `<button class='btn-mod' onclick='router(\"detalle\", ${index})'>Módulo ${index+1}: ${m.t}</button>`).join('');
-    else if (view === 'detalle') {
-      const m = data[i];
-      let html = `<h3>${m.t}</h3><p><strong>Cita:</strong> ${m.c}</p><p class='intro'>${m.intro}</p>`;
-      for (let p in m.p) html += `<details class='tarjeta'><summary>${p}</summary><p>${m.p[p]}</p></details>`;
-      html += `<br><button class='btn-cta' style='background:#f4f4f4;' onclick='shareModule("${m.t}")'>📤 Invitar a un amigo</button><br><button onclick='router(\"itinerario\")'>⬅ Volver al Itinerario</button>`;
-      main.innerHTML = html;
-    } else if (view === 'materiales') {
-      main.innerHTML = "<h3>Materiales: Devocionario</h3>" + 
-        [{s:"🙏 Oración de Emaus", c:"Señor Jesús, que sales a nuestro encuentro en el camino de nuestra vida, camina hoy con nosotros y abre nuestros ojos para reconocerte en el hermano, en la fracción del pan y en la esperanza que nunca muere. Quédate con nosotros, porque atardece. Amén."}, 
-         {s:"👣 Oración del Joven Peregrino", c:"Padre, me pongo en camino. Sé que no siempre sé a dónde voy, pero confío en que Tú conoces el final del sendero. Dame valentía para soltar lo que me pesa y libertad para abrazar lo que me hace crecer. Que mis pies sigan tus huellas. Amén."}, 
-         {s:"🕊️ Invocación al Espíritu Santo", c:"Ven, Espíritu Santo, llena los corazones de tus fieles y enciende en ellos el fuego de tu amor. Envía, Señor, tu Espíritu y todo será creado, y renovarás la faz de la tierra. Amén."}, 
-         {s:"📿 Santo Rosario Juvenil", c:"María, Madre del camino, acompáñanos a orar. Que al contemplar los misterios de la vida de tu Hijo, aprendamos a decir 'fiat' a todo lo que Dios nos pida. Ruega por nosotros, peregrinos de Emaus. Amén."}]
-        .map(o => `<details class='tarjeta'><summary>${o.s}</summary><p>${o.c}</p></details>`).join('');
-    }
-  }
-  function shareModule(titulo) {
-    if (navigator.share) {
-      navigator.share({ title: 'Proyecto Emaus', text: 'Te invito a recorrer este camino conmigo: ' + titulo, url: window.location.href });
-    } else { alert("Copia el enlace de tu navegador para invitar a alguien."); }
-  }
-  router('home');
 
-  // Registro del Service Worker — necesario para que la app sea instalable
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js').catch(err => console.warn('SW no registrado:', err));
-    });
-  }
-</script>
+  <script>
+    const data = [
+      {t: "Encuentro", c: "Lc 24, 15", p: {"1. Lectura": "Jesús camina con ellos. ¿Dónde está Él hoy en tu rutina?", "2. Meditación": "¿Qué te impide reconocerlo?", "3. Oración": "Quédate conmigo, Señor.", "4. Contemplación": "Camina hoy 5 min en silencio."}},
+      {t: "Escucha", c: "Mc 4, 23", p: {"1. Lectura": "El que tenga oídos, oiga.", "2. Meditación": "¿Qué ruido interno te distrae?", "3. Oración": "Habla, Señor, tu siervo escucha.", "4. Contemplación": "Practica escuchar sin interrumpir."}},
+      {t: "Reconocimiento", c: "Lc 24, 31", p: {"1. Lectura": "Se les abrieron los ojos.", "2. Meditación": "¿Qué bondad has recibido?", "3. Oración": "Gracias por tu presencia.", "4. Contemplación": "Agradece un pequeño detalle."}},
+      {t: "Oración", c: "Lc 11, 1", p: {"1. Lectura": "Enséñanos a orar.", "2. Meditación": "¿La oración es carga o alivio?", "3. Oración": "Padre, confío en tu amor.", "4. Contemplación": "Reza un Padre Nuestro pausado."}},
+      {t: "Comunidad", c: "Hch 2, 42", p: {"1. Lectura": "Perseveraban en la comunión.", "2. Meditación": "¿Quiénes son tus hermanos?", "3. Oración": "Hazme puente de unión.", "4. Contemplación": "Envía un mensaje de aliento."}},
+      {t: "Discernimiento", c: "1Jn 4, 1", p: {"1. Lectura": "Poned a prueba los espíritus.", "2. Meditación": "¿Qué te da verdadera paz?", "3. Oración": "Dame luz, Espíritu Santo.", "4. Contemplación": "Elige lo que te hace libre."}},
+      {t: "Conversión", c: "Mc 1, 15", p: {"1. Lectura": "Convertíos y creed.", "2. Meditación": "¿Qué actitud te aleja?", "3. Oración": "Crea en mí un corazón nuevo.", "4. Contemplación": "Realiza un servicio oculto."}},
+      {t: "Seguimiento", c: "Lc 9, 23", p: {"1. Lectura": "Niéguese a sí mismo.", "2. Meditación": "¿Qué añadido te pesa?", "3. Oración": "Mi vida es tuya, Señor.", "4. Contemplación": "Renuncia a un capricho hoy."}},
+      {t: "Testimonio", c: "Mt 5, 14", p: {"1. Lectura": "Sois luz del mundo.", "2. Meditación": "¿Tu vida ilumina?", "3. Oración": "Que mi vida sea un faro.", "4. Contemplación": "Comparte algo positivo."}},
+      {t: "Misión", c: "Mt 28, 19", p: {"1. Lectura": "Id y anunciad.", "2. Meditación": "¿A quién urge esperanza?", "3. Oración": "Envíame, aquí estoy.", "4. Contemplación": "Invita a alguien al proyecto."}}
+    ];
+
+    function router(view, i = null) {
+      const main = document.getElementById('view-port');
+      const buttons = document.querySelectorAll('nav button');
+      buttons.forEach(b => b.classList.remove('active'));
+      if(view === 'home') buttons[0].classList.add('active');
+      else if(view === 'itinerario') buttons[1].classList.add('active');
+
+      if (view === 'home') main.innerHTML = "<h2>Proyecto Emaús</h2><p>Tu camino de Lectio Divina comienza aquí.</p><button class='btn-cta' onclick='router(\"itinerario\")'>Comenzar</button>";
+      else if (view === 'itinerario') main.innerHTML = "<h3>Itinerario</h3>" + data.map((m, idx) => `<button class='btn-mod' onclick='router(\"detalle\", ${idx})'>${m.t}</button>`).join('');
+      else if (view === 'detalle') {
+        const m = data[i];
+        let html = `<h3>${m.t}</h3><p><strong>Cita:</strong> ${m.c}</p>`;
+        for(let p in m.p) html += `<div class='lectio-paso'><span class='paso-titulo'>${p}</span><p>${m.p[p]}</p></div>`;
+        html += `<button class='btn-cta' onclick='router(\"itinerario\")'>⬅ Volver</button>`;
+        main.innerHTML = html;
+      }
+    }
+    router('home');
+  </script>
 </body>
 </html>
