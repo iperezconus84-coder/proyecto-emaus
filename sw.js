@@ -1,6 +1,6 @@
 // Service Worker de Proyecto Emmaús — cache-first con actualización en segundo plano
 const CACHE = 'emaus-v1';
-const APP_SHELL = ['./', './index.html', './manifest.json'];
+const APP_SHELL = ['./', './index.html', './manifest.json', './logo.jpg'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(APP_SHELL)));
